@@ -1,0 +1,35 @@
+{
+    "name": "Snapdragon.Spaces.Samples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:fe685ec1767f73d42b749ea8045bfe43",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:b45beccc4e8e141cb8f9e6b2a8da6b3f",
+        "GUID:4847341ff46394e83bb78fbd0652937e",
+        "GUID:a9420e37d7990b54abdef6688edbe313",
+        "GUID:79868382c2b85f84db22a4a888cf0834"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.qualcomm.qcht.unity.interactions",
+            "expression": "4.0.0-pre.16",
+            "define": "QCHT_UNITY_CORE_4_0_0_PRE_16_OR_NEWER"
+        },
+        {
+            "name": "com.qualcomm.qcht.unity.interactions",
+            "expression": "4.0.0-pre.0",
+            "define": "QCHT_UNITY_CORE"
+        }
+    ],
+    "noEngineReferences": false
+}

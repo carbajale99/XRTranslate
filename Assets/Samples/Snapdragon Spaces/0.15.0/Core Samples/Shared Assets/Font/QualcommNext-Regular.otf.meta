@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f7d59fc35e69b3448ada4ee72d16fd2d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Qualcomm Next
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 87fe3a6331d027644851a3f22da00455, type: 3}
+  - {fileID: 12800000, guid: f76bb1e01bebb479e94faf0cb578f3ca, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
