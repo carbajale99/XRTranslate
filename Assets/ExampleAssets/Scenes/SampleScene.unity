@@ -527,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.42
       objectReference: {fileID: 0}
     - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81,
         type: 3}
@@ -640,6 +640,8 @@ GameObject:
   - component: {fileID: 212175866532230322}
   - component: {fileID: 5472436117178709916}
   - component: {fileID: 5434462552450501220}
+  - component: {fileID: 6672308126474732645}
+  - component: {fileID: 6672308126474732644}
   m_Layer: 0
   m_Name: AR Session
   m_TagString: Untagged
@@ -647,3 +649,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672308126474732644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672308126474732643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlanePrefab: {fileID: 0}
+  m_DetectionMode: -1
+--- !u!114 &6672308126474732645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672308126474732643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520bb47c46cf8624fafb307b7d1b862a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
