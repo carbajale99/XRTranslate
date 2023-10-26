@@ -1,0 +1,4 @@
+repository "XRTranslate@carbajale99@cloud"
+  path "/"
+    br "/main"
+    co "/main"

@@ -4,7 +4,27 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/MainScene.unity
+    guid: 305eef6b8cde485418d336e7d30fd22f
+  - enabled: 0
+    path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Plane Detection
+      Sample/Plane Detection Sample.unity
+    guid: 46111d8efce134ef38f645e0c00e1362
+  - enabled: 0
+    path: Assets/Scenes/Anchor Sample.unity
+    guid: 7a6ebc15d9592c24683be164b28326ea
+  - enabled: 0
+    path: Assets/Scenes/Plane Detection Sample.unity
+    guid: 78c9552554202cb4fb267e6fbc31f3c8
+  - enabled: 1
+    path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Main Menu/Main
+      Menu.unity
+    guid: 2b406ea90420fc841839c843c6bfc3d5
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
