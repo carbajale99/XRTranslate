@@ -18,13 +18,37 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Anchor Sample.unity
     guid: 7a6ebc15d9592c24683be164b28326ea
-  - enabled: 0
-    path: Assets/Scenes/Plane Detection Sample.unity
-    guid: 78c9552554202cb4fb267e6fbc31f3c8
   - enabled: 1
+    path: Assets/Scenes/CurrentButtonScene.unity
+    guid: 78c9552554202cb4fb267e6fbc31f3c8
+  - enabled: 0
     path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Main Menu/Main
       Menu.unity
     guid: 2b406ea90420fc841839c843c6bfc3d5
+  - enabled: 0
+    path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Anchor Sample/Anchor
+      Sample.unity
+    guid: a6e56af4472621b45b91380052443a24
+  - enabled: 0
+    path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Camera Frame
+      Access Sample/Camera Frame Access Sample.unity
+    guid: 7baa3e9f6af898949bb40acf3ab781df
+  - enabled: 0
+    path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Hit Testing
+      Sample/Hit Testing Sample.unity
+    guid: c583c7f614816bd489b3bcd62bf9aac0
+  - enabled: 0
+    path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Image Tracking
+      Sample/Image Tracking Sample.unity
+    guid: 61f68fcb03f5e2640b757852c008c89a
+  - enabled: 0
+    path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Spatial Meshing
+      Sample/Spatial Meshing Sample.unity
+    guid: f218a55ed2e2741418ef6f380d60db57
+  - enabled: 0
+    path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/XR Interaction
+      Toolkit Sample/XR Interaction Toolkit Sample.unity
+    guid: 457c784199db14427a9e59e7acbf15a2
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
