@@ -19,7 +19,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Anchor Sample.unity
     guid: 7a6ebc15d9592c24683be164b28326ea
   - enabled: 1
-    path: Assets/Scenes/CurrentButtonScene.unity
+    path: Assets/ButtonTests/CurrentButtonScene.unity
     guid: 78c9552554202cb4fb267e6fbc31f3c8
   - enabled: 0
     path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Main Menu/Main
