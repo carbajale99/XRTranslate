@@ -8,7 +8,6 @@ public class ButtonClick : MonoBehaviour
 {
     // Start is called before the first frame update
     //variables:
-    public Canvas ourCanvas;
     public Button ourButton;
     public GameObject translationUIPrefab;
     private Vector3 buttonPosition;
