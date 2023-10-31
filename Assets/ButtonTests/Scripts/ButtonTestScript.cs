@@ -5,9 +5,17 @@
  ******************************************************************************/
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+//using UnityEditor.PackageManager;
+using System.Net.Http;
+//using System.Text;
+//using System.Text.Json;
+//using Unity.VisualScripting;
+//using System;
+//using System.Linq;
+//using System.Web;
 
 namespace Qualcomm.Snapdragon.Spaces.Samples
 {
@@ -27,28 +35,62 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         private Camera _arCamera;
         private InteractionManager _interactionManager;
 
+        //public GameObject ourContainer;
+        public Canvas ourCanvas;
         public Button ourButton;
         public GameObject translationUIPrefab;
         private Vector3 buttonPosition;
 
+        private HttpClient client;
+        public TranslationPostData translationPostData;
+
+        private PositionListener positionListener;
+
         public void buttonClicked()
         {
-            if(ourButton.transform.childCount > 1)
-            {
-                GameObject.Destroy(ourButton.transform.Find("TranslationUI(Clone)").gameObject);
-            }
-            else
-            {
-                GameObject translation = Instantiate(translationUIPrefab, new Vector3(0, 0, 0), Quaternion.identity); //Instanting a prefab object
 
-                translation.transform.SetParent(ourButton.transform);
-                translation.transform.localScale = Vector3.one;
-                translation.transform.localPosition = new Vector3(buttonPosition.x, buttonPosition.y + 200.0f, buttonPosition.z);
-                GameObject translationText = translation.transform.Find("TranslationText").gameObject;
-                translationText.GetComponent<TextMeshProUGUI>().text = "Less goo";
+            positionListener.buttonPosition = buttonPosition;
+            positionListener.positionGiven = true;
 
-                Debug.Log("Clicked!");
+            //var json = JsonSerializer.ToJsonString(translationPostData);
+            //var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            GameObject buttonTextObj = ourButton.transform.Find("ButtonText").gameObject; //getting buttonText 
+            string buttonText = buttonTextObj.GetComponent<TextMeshProUGUI>().text; //converting game obj to string
+
+            string translationURL = stringToTranslationPar(buttonText); //translating text
+
+            var response = client.GetAsync(translationURL).Result; //response from api
+
+
+            if (response.IsSuccessStatusCode) //if translation success display
+            {
+                var responseContent = response.Content.ReadAsStringAsync().Result;
+                positionListener.ourText = responseContent.Replace("\"", "");
+                Debug.Log(responseContent);
             }
+            else //else error
+            {
+                Debug.Log("Error: " + response.StatusCode);
+            }
+
+            //if(ourButton.transform.childCount > 1)
+            //{
+            //    GameObject.Destroy(ourButton.transform.Find("TranslationUI(Clone)").gameObject);
+            //}
+            //else
+            //{
+            //    GameObject translation = Instantiate(translationUIPrefab, new Vector3(0, 0, 0), Quaternion.identity); //Instanting a prefab object
+
+            //    translation.transform.SetParent(ourCanvas.transform);
+            //    //translation.transform.localScale = Vector3.one;
+            //    translation.transform.localPosition = new Vector3(buttonPosition.x, buttonPosition.y + 0.5f, buttonPosition.z);
+            //    GameObject translationText = translation.transform.Find("TranslationText").gameObject;
+            //    translationText.GetComponent<TextMeshProUGUI>().text = "Less goo";
+            //    translationText.GetComponent<TextMeshProUGUI>().fontSize = 30;
+
+            //    Debug.Log("Clicked!");
+            //}
         }
 
         private void Start()
@@ -56,8 +98,28 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             _arCamera = OriginLocationUtility.GetOriginCamera();
             _arCameraTransform = _arCamera.transform;
             _interactionManager ??= FindObjectOfType<InteractionManager>(true);
+            
+            buttonPosition = ourButton.transform.position;//getting the position of the button
 
-            buttonPosition = ourButton.transform.position;
+            positionListener = ourCanvas.GetComponent<PositionListener>();
+            translationPostData = new TranslationPostData
+            {
+                phrase = "Hola, como estas?"
+            };
+
+            client = new HttpClient();
+            client.BaseAddress = new System.Uri("http://127.0.0.1:5000");
+        }
+
+        private string stringToTranslationPar(string phrase) //function to set up parameter 
+        {   
+            string baseURL = "/translator?phrase="; //base URL
+
+            string finalURL = baseURL + phrase; //baseURL + phrase to translate
+
+            //string cleanedPhrase = phrase.Replace("\\n", "");
+
+            return finalURL;
         }
 
         private void Update()
@@ -67,6 +129,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 AdjustPanelPosition();
             }
         }
+
 
         // Adjusts the position of the Panel if the gaze moves outside of the inner rectangle of the FOV,
         //  which is half the length in both axis.

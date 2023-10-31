@@ -11,6 +11,7 @@ public class ButtonClick : MonoBehaviour
     public Button ourButton;
     public GameObject translationUIPrefab;
     private Vector3 buttonPosition;
+    public string translationReceived = "";
 
     void Start()
     {
