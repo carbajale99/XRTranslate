@@ -1,13 +1,13 @@
 from flask_cors import CORS
 from flask_restful import Api, Resource
 from flask import Flask, request, jsonify
-from urllib.parse import urlparse, parse_qs
+# from urllib.parse import urlparse, parse_qs
 from endpoints.wordDetection.OCR import ocr
 from endpoints.translation.translator import translate
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app)
+cors = CORS(app, resources ={r'/*': {'origins': '*'}})
 
 
 class OCR(Resource):
