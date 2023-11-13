@@ -14,6 +14,8 @@ public class PositionListener : MonoBehaviour
     public Canvas ourCanvas;
     public string ourText;
 
+    private IEnumerator startDeleteCo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +36,16 @@ public class PositionListener : MonoBehaviour
             GameObject translationText = translation.transform.Find("TranslationText").gameObject;
             translationText.GetComponent<TextMeshProUGUI>().text = ourText;
             translationText.GetComponent<TextMeshProUGUI>().fontSize = 30;
+            Debug.Log(translation.name + " $$$");
+            startDeleteCo = translation.GetComponent<TranslationBox>().startDeleteTimer();
+            StartCoroutine(startDeleteCo);
+            Debug.Log("corout started");
+
 
             Debug.Log("Clicked!");
 
             positionGiven = false;
         }
     }
-
       
 }

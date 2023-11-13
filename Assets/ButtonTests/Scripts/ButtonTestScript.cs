@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using TMPro;
 //using UnityEditor.PackageManager;
 using System.Net.Http;
+using System.Collections;
 //using System.Text;
 //using System.Text.Json;
 //using Unity.VisualScripting;
@@ -36,13 +37,13 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         private InteractionManager _interactionManager;
 
         //public GameObject ourContainer;
-        public Canvas ourCanvas;
+        public Canvas ourCanvas; 
         public Button ourButton;
         public GameObject translationUIPrefab;
         private Vector3 buttonPosition;
 
+
         private HttpClient client;
-        public TranslationPostData translationPostData;
 
         private PositionListener positionListener;
 
@@ -52,8 +53,6 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             positionListener.buttonPosition = buttonPosition;
             positionListener.positionGiven = true;
 
-            //var json = JsonSerializer.ToJsonString(translationPostData);
-            //var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             GameObject buttonTextObj = ourButton.transform.Find("ButtonText").gameObject; //getting buttonText 
             string buttonText = buttonTextObj.GetComponent<TextMeshProUGUI>().text; //converting game obj to string
@@ -73,25 +72,9 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             {
                 Debug.Log("Error: " + response.StatusCode);
             }
-
-            //if(ourButton.transform.childCount > 1)
-            //{
-            //    GameObject.Destroy(ourButton.transform.Find("TranslationUI(Clone)").gameObject);
-            //}
-            //else
-            //{
-            //    GameObject translation = Instantiate(translationUIPrefab, new Vector3(0, 0, 0), Quaternion.identity); //Instanting a prefab object
-
-            //    translation.transform.SetParent(ourCanvas.transform);
-            //    //translation.transform.localScale = Vector3.one;
-            //    translation.transform.localPosition = new Vector3(buttonPosition.x, buttonPosition.y + 0.5f, buttonPosition.z);
-            //    GameObject translationText = translation.transform.Find("TranslationText").gameObject;
-            //    translationText.GetComponent<TextMeshProUGUI>().text = "Less goo";
-            //    translationText.GetComponent<TextMeshProUGUI>().fontSize = 30;
-
-            //    Debug.Log("Clicked!");
-            //}
         }
+
+
 
         private void Start()
         {
@@ -102,13 +85,9 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             buttonPosition = ourButton.transform.position;//getting the position of the button
 
             positionListener = ourCanvas.GetComponent<PositionListener>();
-            translationPostData = new TranslationPostData
-            {
-                phrase = "Hola, como estas?"
-            };
 
             client = new HttpClient();
-            client.BaseAddress = new System.Uri("http://127.0.0.1:5000");
+            client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
         }
 
         private string stringToTranslationPar(string phrase) //function to set up parameter 
@@ -116,8 +95,6 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             string baseURL = "/translator?phrase="; //base URL
 
             string finalURL = baseURL + phrase; //baseURL + phrase to translate
-
-            //string cleanedPhrase = phrase.Replace("\\n", "");
 
             return finalURL;
         }
