@@ -18,8 +18,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Anchor Sample.unity
     guid: 7a6ebc15d9592c24683be164b28326ea
-  - enabled: 1
-    path: Assets/ButtonTests/CurrentButtonScene.unity
+  - enabled: 0
+    path: Assets/TranslationButton/CurrentButtonScene.unity
     guid: 78c9552554202cb4fb267e6fbc31f3c8
   - enabled: 0
     path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/Main Menu/Main
@@ -49,6 +49,9 @@ EditorBuildSettings:
     path: Assets/Samples/Snapdragon Spaces/0.15.0/Core Samples/Scenes/XR Interaction
       Toolkit Sample/XR Interaction Toolkit Sample.unity
     guid: 457c784199db14427a9e59e7acbf15a2
+  - enabled: 1
+    path: Assets/PictureButton/PictureButton.unity
+    guid: 9a435bac18b4a024c820d42f53f7a426
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
