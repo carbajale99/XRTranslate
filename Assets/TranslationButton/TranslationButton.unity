@@ -519,6 +519,7 @@ MonoBehaviour:
     type: 3}
   buttonPosition: {x: 0, y: 0, z: 0}
   ourCanvas: {fileID: 721647705}
+  ourText: 
 --- !u!1 &861708729
 GameObject:
   m_ObjectHideFlags: 0

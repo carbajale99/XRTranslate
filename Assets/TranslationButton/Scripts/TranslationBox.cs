@@ -9,10 +9,10 @@ public class TranslationBox : MonoBehaviour
     public IEnumerator startDeleteTimer()
     {
 
-        Debug.Log("In coroutine before yield");
+        //Debug.Log("In coroutine before yield");
         yield return new WaitForSeconds(10.0f);
         //delete = true;
-        Debug.Log("In coroutine after yield");
+        //Debug.Log("In coroutine after yield");
         Destroy(gameObject);
 
        
