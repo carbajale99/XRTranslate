@@ -36,13 +36,9 @@ public class PositionListener : MonoBehaviour
             GameObject translationText = translation.transform.Find("TranslationText").gameObject;
             translationText.GetComponent<TextMeshProUGUI>().text = ourText;
             translationText.GetComponent<TextMeshProUGUI>().fontSize = 30;
-            Debug.Log(translation.name + " $$$");
+
             startDeleteCo = translation.GetComponent<TranslationBox>().startDeleteTimer();
             StartCoroutine(startDeleteCo);
-            Debug.Log("corout started");
-
-
-            Debug.Log("Clicked!");
 
             positionGiven = false;
         }
