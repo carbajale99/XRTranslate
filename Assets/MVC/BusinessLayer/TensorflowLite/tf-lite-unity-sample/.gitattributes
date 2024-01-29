@@ -1,0 +1,15 @@
+# macOS
+*.dylib filter=lfs diff=lfs merge=lfs -text
+
+# Android / Linux
+*.aar filter=lfs diff=lfs merge=lfs -text
+*.so filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text
+
+# iOS frameworks
+**/TensorFlowLiteC.framework/TensorFlowLiteC filter=lfs diff=lfs merge=lfs -text
+**/TensorFlowLiteCMetal.framework/TensorFlowLiteCMetal filter=lfs diff=lfs merge=lfs -text
+**/TensorFlowLiteCCoreML.framework/TensorFlowLiteCCoreML filter=lfs diff=lfs merge=lfs -text
+
+# TFLite models
+*.tflite filter=lfs diff=lfs merge=lfs -text
