@@ -1148,8 +1148,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1887063658}
-        m_TargetAssemblyTypeName: ScreenshotTest, Assembly-CSharp
-        m_MethodName: takeScreenshot
+        m_TargetAssemblyTypeName: Qualcomm.Snapdragon.Spaces.Samples.ScreenshotTest,
+          Assembly-CSharp
+        m_MethodName: imageTaker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1215,6 +1216,7 @@ MonoBehaviour:
   VerticalBias: 0.8
   HorizontalBias: 0.5
   arCamera: {fileID: 116555811}
+  image: {fileID: 0}
   camRawImage: {fileID: 1535155939}
 --- !u!1 &1535155935
 GameObject:
@@ -1671,4 +1673,5 @@ MonoBehaviour:
   VerticalBias: 0.8
   HorizontalBias: 0.5
   arCamera: {fileID: 116555811}
+  image: {fileID: 0}
   camRawImage: {fileID: 0}

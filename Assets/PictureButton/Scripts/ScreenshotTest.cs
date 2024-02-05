@@ -34,7 +34,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public Camera arCamera;
         private ARCameraManager arCameraManager;
         public GameObject image;
-
+         
         public RawImage camRawImage;
 
         private Texture2D camTexture;
@@ -64,12 +64,12 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
         private void OnFrameReceived(ARCameraFrameEventArgs args)
         {
-            Debug.Log(pictureTaken);
+            /*Debug.Log(pictureTaken);
 
             if (pictureTaken)
             {
                 return;
-            }
+            }*/
 
             //cpuImage = new XRCpuImage();
             if (!arCameraManager.TryAcquireLatestCpuImage(out cpuImage))
@@ -78,10 +78,10 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
                 return;
             }
 
-            UpdateCameraTexture(cpuImage);
+           //UpdateCameraTexture(cpuImage);
         }
 
-        private unsafe void UpdateCameraTexture(XRCpuImage image)
+        /*private unsafe void UpdateCameraTexture(XRCpuImage image)
         {
             var format = TextureFormat.RGBA32;
 
@@ -105,6 +105,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             camTexture.Apply();
             camRawImage.texture = camTexture;
         }
+*/
 
         public void takeScreenshot()
         {
@@ -112,8 +113,62 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         }
 
 
+        public void imageTaker()
+        {
+            // Acquire an XRCpuImage
+            if (!arCameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
+                return;
+
+            // Set up our conversion params
+            var conversionParams = new XRCpuImage.ConversionParams
+            {
+                // Convert the entire image
+                inputRect = new RectInt(0, 0, image.width, image.height),
+
+                // Output at full resolution
+                outputDimensions = new Vector2Int(image.width, image.height),
+
+                // Convert to RGBA format
+                outputFormat = TextureFormat.RGBA32,
+
+                // Flip across the vertical axis (mirror image)
+                transformation = XRCpuImage.Transformation.MirrorY
+            };
+
+            // Create a Texture2D to store the converted image
+            var texture = new Texture2D(image.width, image.height, TextureFormat.RGBA32, false);
+
+            // Texture2D allows us write directly to the raw texture data as an optimization
+            var rawTextureData = texture.GetRawTextureData<byte>();
+            try
+            {
+                unsafe
+                {
+                    // Synchronously convert to the desired TextureFormat
+                    image.Convert(
+                        conversionParams,
+                        new IntPtr(rawTextureData.GetUnsafePtr()),
+                        rawTextureData.Length);
+                }
+            }
+            finally
+            {
+                // Dispose the XRCpuImage after we're finished to prevent any memory leaks
+                image.Dispose();
+            }
+
+            // Apply the converted pixel data to our texture
+            texture.Apply();
+
+            camRawImage.texture = texture;
+
+        }
+
+
+
         //public void takeScreenshot()
         //{
+
         //    bool captured = arCamera.GetComponent<ARCameraManager>().TryAcquireLatestCpuImage(out cpuImage);
 
         //    debug.GetComponent<TextMeshProUGUI>().text = captured.ToString();

@@ -2,8 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\Assets",
-    "\\Assets\\ExampleAssets",
-    "\\Assets\\ExampleAssets\\Scripts"
+    "\\Assets\\Samples",
+    "\\Assets\\Samples\\Snapdragon Spaces",
+    "\\Assets\\Samples\\Snapdragon Spaces\\0.15.0",
+    "\\Assets\\Samples\\Snapdragon Spaces\\0.15.0\\Core Samples",
+    "\\Assets\\Samples\\Snapdragon Spaces\\0.15.0\\Core Samples\\Scenes",
+    "\\Assets\\Samples\\Snapdragon Spaces\\0.15.0\\Core Samples\\Scenes\\Camera Frame Access Sample",
+    "\\Assets\\Samples\\Snapdragon Spaces\\0.15.0\\Core Samples\\Scenes\\Camera Frame Access Sample\\Scripts",
+    "\\Assets\\Samples\\Snapdragon Spaces\\0.15.0\\Core Samples\\Scenes\\Main Menu",
+    "\\Assets\\Samples\\Snapdragon Spaces\\0.15.0\\Core Samples\\Scenes\\Main Menu\\Scripts"
   ],
   "PreviewInSolutionExplorer": false
 }
