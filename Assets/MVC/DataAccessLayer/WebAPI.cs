@@ -25,19 +25,13 @@ public class WebAPI : MonoBehaviour
 
 
         var fileName = Path.GetFileName(imgPath);
-        //using var fileContent = new ByteArrayContent(await File.ReadAllBytesAsync(imgPath));
-        //fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-        //using var fileContent = new ByteArrayContent(await File.ReadAllBytesAsync(imgPath));
-        //fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
 
         var requestContent = new MultipartFormDataContent();
-        // here it is important that second parameter matches with name given in API.
+        var fileStream = File.OpenRead(imgPath);
+
+        requestContent.Add(new StreamContent(fileStream), "file", fileName);
 
         // here it is important that second parameter matches with name given in API.
-        //form.Add(fileContent, "file", Path.GetFileName(imgPath));
-
-        // here it is important that second parameter matches with name given in API.
-        //form.Add(fileContent, "file", Path.GetFileName(imgPath));
 
         var response = client.PostAsync(ocrURL, requestContent).Result;
 
@@ -54,12 +48,6 @@ public class WebAPI : MonoBehaviour
             Debug.Log("Error: " + response.StatusCode);
             return "Error: " + response.StatusCode;
         }
-
-
-        //var result = await response.Content.ReadAsStringAsync();
-        //Debug.Log(result);
-
-
 
     }
 
@@ -83,7 +71,7 @@ public class WebAPI : MonoBehaviour
         else //else error
         {
             Debug.Log("Error: " + response.StatusCode);
-            return response.StatusCode.ToString(); 
+            return response.StatusCode.ToString();
         }
     }
 
