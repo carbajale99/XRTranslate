@@ -95,7 +95,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
             var finalResult = webAPI.imageToText(testImage);
 
-            Debug.Log(convertedText);
+            Debug.Log(finalResult);
 
         }
 
