@@ -11,6 +11,7 @@ using TMPro;
 //using UnityEditor.PackageManager;
 using System.Net.Http;
 using System.Collections;
+using System.IO;
 //using System.Text;
 //using System.Text.Json;
 //using Unity.VisualScripting;
@@ -94,7 +95,8 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
             var finalResult = webAPI.imageToText(testImage);
 
-            Debug.Log(finalResult);
+            Debug.Log(convertedText);
+
         }
 
 
@@ -111,8 +113,8 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
             webAPI = new WebAPI();
 
-            //client = new HttpClient();
-            //client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
+            
+        
         }
 
         private string stringToTranslationPar(string phrase) //function to set up parameter 
