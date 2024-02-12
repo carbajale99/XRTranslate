@@ -3,6 +3,7 @@ using Qualcomm.Snapdragon.Spaces.Samples;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
@@ -31,27 +32,33 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         private Camera _arCamera;
         private InteractionManager _interactionManager;
 
-        public Camera arCamera;
         private ARCameraManager arCameraManager;
-        public GameObject image;
+        public GameObject testImage;
+        public GameObject textMeshPro;
          
-        public RawImage camRawImage;
 
         private Texture2D camTexture;
         private XRCpuImage cpuImage;
 
-        private bool pictureTaken = false;
+        private WebAPI webAPI;
+
+
 
         // Start is called before the first frame update
         void Start()
         {
+
+
             _arCamera = OriginLocationUtility.GetOriginCamera();
             _arCameraTransform = _arCamera.transform;
-            _interactionManager ??= FindObjectOfType<InteractionManager>(true);
+            //_interactionManager ??= FindObjectOfType<InteractionManager>(true);
 
-            arCameraManager = arCamera.GetComponent<ARCameraManager>();
+            arCameraManager = _arCamera.GetComponent<ARCameraManager>();
 
-            arCameraManager.frameReceived += OnFrameReceived;
+            webAPI = new WebAPI();
+
+
+            //arCameraManager.frameReceived += OnFrameReceived;
         }
 
         private void Update()
@@ -60,28 +67,39 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             {
                 AdjustPanelPosition();
             }
+
+            //if (pictureTaken)
+            //{
+            //    StartCoroutine(takeScreenshot());
+            //    pictureTaken = false;
+            //}
         }
 
-        private void OnFrameReceived(ARCameraFrameEventArgs args)
+        public void buttonclick()
         {
-            /*Debug.Log(pictureTaken);
 
-            if (pictureTaken)
-            {
-                return;
-            }*/
+            StartCoroutine(CaptureImage());
+            
+        }
 
-            //cpuImage = new XRCpuImage();
+        private IEnumerator CaptureImage()
+        {
+            yield return new WaitForEndOfFrame();
+
+            cpuImage = new XRCpuImage();
             if (!arCameraManager.TryAcquireLatestCpuImage(out cpuImage))
             {
-                Debug.Log("Failed to acquire latest cpu image.");
-                return;
+                textMeshPro.GetComponent<TextMeshProUGUI>().text = "Failed to acquire latest cpu image.";
+                yield return new WaitForEndOfFrame();
             }
 
-           //UpdateCameraTexture(cpuImage);
+            UpdateCameraTexture(cpuImage);
+
+
         }
 
-        /*private unsafe void UpdateCameraTexture(XRCpuImage image)
+
+        private unsafe void UpdateCameraTexture(XRCpuImage image)
         {
             var format = TextureFormat.RGBA32;
 
@@ -99,17 +117,98 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             }
             finally
             {
+
                 image.Dispose();
             }
 
             camTexture.Apply();
-            camRawImage.texture = camTexture;
-        }
-*/
 
-        public void takeScreenshot()
+
+            string fileName = "translate.png";
+
+            string path = Path.Combine(Application.persistentDataPath, fileName);
+
+            byte[] bytes = camTexture.EncodeToPNG();
+
+            File.WriteAllBytes(path, bytes);
+
+            string imageToText = webAPI.imageToText(path);
+
+            byte[] pngImageByteArray = null;
+            
+            pngImageByteArray = File.ReadAllBytes(path);
+
+            //Debug.Log(Application.persistentDataPath);
+            //string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+            //string filePath = Path.Combine(Application.dataPath, fileName);
+            //File.WriteAllBytes(filePath, bytes);
+
+            textMeshPro.GetComponent<TextMeshProUGUI>().text = imageToText;
+
+            Texture2D tempTexture = new Texture2D(image.width, image.height, format, false);
+            tempTexture.LoadImage(pngImageByteArray);
+            testImage.GetComponent<RawImage>().texture = tempTexture;
+
+
+        }
+
+
+        public IEnumerator takeScreenshot()
         {
-            pictureTaken = true;
+
+            yield return new WaitForEndOfFrame();
+            
+
+            int width = Screen.width;
+            int height = Screen.height;
+            RenderTexture rt = new RenderTexture(width, height, 24);
+
+            _arCamera.targetTexture = rt;
+
+            // The Render Texture in RenderTexture.active is the one
+            // that will be read by ReadPixels.
+            //var currentRT = RenderTexture.active;
+
+            // Render the camera's view.
+
+            // Make a new texture and read the active Render Texture into it.
+            Texture2D image = new Texture2D(width, height);
+            
+            _arCamera.Render();
+            RenderTexture.active = rt;
+            
+            image.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+
+            image.Apply();
+
+            _arCamera.targetTexture = null;
+
+            RenderTexture.active = null;
+
+            //Destroy(rt);
+
+            // Replace the original active Render Texture.
+
+            //RenderTexture.active = currentRT;
+
+            byte[] bytes = image.EncodeToPNG();
+            Debug.Log(Application.persistentDataPath);
+            string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+            string filePath = Path.Combine(Application.dataPath, fileName);
+            File.WriteAllBytes(filePath, bytes);
+
+            //Destroy(image);
+
+
+            //Destroy(rt);
+            //Destroy(image);
+
+
+
+            //if (currentRT == null)
+            //{
+            //}
+            //camRawImage.texture = image;
         }
 
 
@@ -160,7 +259,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             // Apply the converted pixel data to our texture
             texture.Apply();
 
-            camRawImage.texture = texture;
+            //camRawImage.texture = texture;
 
         }
 

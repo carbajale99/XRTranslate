@@ -15,4 +15,5 @@ MonoBehaviour:
   Keys: 07000000
   Values:
   - featureSets:
+    - com.qualcomm.snapdragon.spaces.experimental
     - com.qualcomm.snapdragon.spaces

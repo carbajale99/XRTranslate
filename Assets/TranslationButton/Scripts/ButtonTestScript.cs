@@ -51,36 +51,6 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
         private PositionListener positionListener;
 
-        //public void buttonClicked()
-        //{
-
-        //    positionListener.buttonPosition = buttonPosition;
-        //    positionListener.positionGiven = true;
-
-
-        //    GameObject buttonTextObj = ourButton.transform.Find("ButtonText").gameObject; //getting buttonText 
-        //    string buttonText = buttonTextObj.GetComponent<TextMeshProUGUI>().text; //converting game obj to string
-
-        //    string finalResult = await webAPI.imageToTextAsync(testImage);
-
-        //    Debug.Log
-
-        //    string translationurl = stringtotranslationpar(buttontext); //translating text
-
-        //    var response = client.getasync(translationurl).result; //response from api
-
-
-        //    if (response.issuccessstatuscode) //if translation success display
-        //    {
-        //        var responsecontent = response.content.readasstringasync().result;
-        //        positionlistener.ourtext = responsecontent.replace("\"", "");
-        //        debug.log(responsecontent);
-        //    }
-        //    else //else error
-        //    {
-        //        debug.log("error: " + response.statuscode);
-        //    }
-        //}
 
         public void buttonClicked()
         {
@@ -92,7 +62,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             GameObject buttonTextObj = ourButton.transform.Find("ButtonText").gameObject; //getting buttonText 
             string buttonText = buttonTextObj.GetComponent<TextMeshProUGUI>().text; //converting game obj to string
 
-            var finalResult = webAPI.imageToTextAsync(testImage);
+            var finalResult = webAPI.imageToText(testImage);
 
             Debug.Log(finalResult);
         }
@@ -111,8 +81,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
             webAPI = new WebAPI();
 
-            //client = new HttpClient();
-            //client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
+         
         }
 
         private string stringToTranslationPar(string phrase) //function to set up parameter 
