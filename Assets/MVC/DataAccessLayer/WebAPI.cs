@@ -18,7 +18,7 @@ public class WebAPI : MonoBehaviour
         client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
     }
 
-    public string imageToTextAsync(string imgPath)
+    public string imageToText(string imgPath)
     {
         string ocrURL = "/ocr";
 
@@ -26,13 +26,9 @@ public class WebAPI : MonoBehaviour
 
         using var requestContent = new MultipartFormDataContent();
         using var fileStream = File.OpenRead("C:/Users/edgar/Downloads/hello.png"); 
-        //using var fileContent = new ByteArrayContent(await File.ReadAllBytesAsync(imgPath));
-        //fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
 
         requestContent.Add(new StreamContent(fileStream), "file", fileName);
 
-        // here it is important that second parameter matches with name given in API.
-        //form.Add(fileContent, "file", Path.GetFileName(imgPath));
 
         var response = client.PostAsync(ocrURL, requestContent).Result;
 
@@ -40,19 +36,7 @@ public class WebAPI : MonoBehaviour
 
         return ocrURL;
 
-        //if (response.IsSuccessStatusCode) //if translation success display
-        //{
-        //    var responseContent = response.Content.ReadAsStringAsync().Result;
-        //    responseContent = responseContent.Replace("\"", "");
-        //    Debug.Log(responseContent);
-        //    return responseContent;
 
-        //}
-        //else //else error
-        //{
-        //    Debug.Log("Error: " + response.StatusCode);
-        //    return response.StatusCode.ToString();
-        //}
     }
 
 

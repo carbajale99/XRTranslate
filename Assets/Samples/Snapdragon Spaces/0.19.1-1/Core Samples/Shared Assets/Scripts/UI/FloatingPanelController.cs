@@ -1,26 +1,16 @@
 /******************************************************************************
- * File: ButtonTestScript.cs
+ * File: FloatingPanelController.cs
  * Copyright (c) 2022-2023 Qualcomm Technologies, Inc. and/or its subsidiaries. All rights reserved.
  *
  ******************************************************************************/
 
 using UnityEngine;
-//using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
-//using UnityEditor.PackageManager;
-using System.Net.Http;
-using System.Collections;
-//using System.Text;
-//using System.Text.Json;
-//using Unity.VisualScripting;
-//using System;
-//using System.Linq;
-//using System.Web;
 
 namespace Qualcomm.Snapdragon.Spaces.Samples
 {
-    public class ButtonTestScript : MonoBehaviour
+    public class FloatingPanelController : MonoBehaviour
     {
         [Tooltip("Whether the Game Object should follow or not the camera movement.")]
         public bool FollowGaze = true;
@@ -32,96 +22,25 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public float VerticalBias = 0.8f;
         [Tooltip("Horizontal follow threshold.")]
         public float HorizontalBias = 0.5f;
+
+        public Toggle mainMenuToggle;
+        public Toggle infoMenuToggle;
+
         private Transform _arCameraTransform;
         private Camera _arCamera;
         private InteractionManager _interactionManager;
 
-        //public GameObject ourContainer;
-        public Canvas ourCanvas; 
-        public Button ourButton;
-        public GameObject translationUIPrefab;
-        private Vector3 buttonPosition;
-
-
-        private HttpClient client;
-
-        private WebAPI webAPI;
-
-        private string testImage = "C:/Users/edgar/Downloads/hello.png";
-
-        private PositionListener positionListener;
-
-        //public void buttonClicked()
-        //{
-
-        //    positionListener.buttonPosition = buttonPosition;
-        //    positionListener.positionGiven = true;
-
-
-        //    GameObject buttonTextObj = ourButton.transform.Find("ButtonText").gameObject; //getting buttonText 
-        //    string buttonText = buttonTextObj.GetComponent<TextMeshProUGUI>().text; //converting game obj to string
-
-        //    string finalResult = await webAPI.imageToTextAsync(testImage);
-
-        //    Debug.Log
-
-        //    string translationurl = stringtotranslationpar(buttontext); //translating text
-
-        //    var response = client.getasync(translationurl).result; //response from api
-
-
-        //    if (response.issuccessstatuscode) //if translation success display
-        //    {
-        //        var responsecontent = response.content.readasstringasync().result;
-        //        positionlistener.ourtext = responsecontent.replace("\"", "");
-        //        debug.log(responsecontent);
-        //    }
-        //    else //else error
-        //    {
-        //        debug.log("error: " + response.statuscode);
-        //    }
-        //}
-
-        public void buttonClicked()
+        public void SwitchToScene(string name)
         {
-
-            positionListener.buttonPosition = buttonPosition;
-            positionListener.positionGiven = true;
-
-
-            GameObject buttonTextObj = ourButton.transform.Find("ButtonText").gameObject; //getting buttonText 
-            string buttonText = buttonTextObj.GetComponent<TextMeshProUGUI>().text; //converting game obj to string
-
-            var finalResult = webAPI.imageToText(testImage);
-
-            Debug.Log(finalResult);
+            _interactionManager?.SendHapticImpulse();
+            SceneManager.LoadScene(name);
         }
-
-
 
         private void Start()
         {
             _arCamera = OriginLocationUtility.GetOriginCamera();
             _arCameraTransform = _arCamera.transform;
             _interactionManager ??= FindObjectOfType<InteractionManager>(true);
-            
-            buttonPosition = ourButton.transform.position;//getting the position of the button
-
-            positionListener = ourCanvas.GetComponent<PositionListener>();
-
-            webAPI = new WebAPI();
-
-            //client = new HttpClient();
-            //client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
-        }
-
-        private string stringToTranslationPar(string phrase) //function to set up parameter 
-        {   
-            string baseURL = "/translator?phrase="; //base URL
-
-            string finalURL = baseURL + phrase; //baseURL + phrase to translate
-
-            return finalURL;
         }
 
         private void Update()
@@ -132,6 +51,20 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             }
         }
 
+        public void MainMenuPinUI(bool pin)
+        {
+            FollowGaze = !pin;
+            if (infoMenuToggle != null)
+            {
+                infoMenuToggle.isOn = pin;
+            }
+        }
+
+        public void InfoMenuPinUI(bool pin)
+        {
+            FollowGaze = !pin;
+            mainMenuToggle.isOn = pin;
+        }
 
         // Adjusts the position of the Panel if the gaze moves outside of the inner rectangle of the FOV,
         //  which is half the length in both axis.

@@ -3,12 +3,14 @@ using Qualcomm.Snapdragon.Spaces.Samples;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 namespace Qualcomm.Snapdragon.Spaces.Samples
@@ -29,29 +31,32 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public float HorizontalBias = 0.5f;
         private Transform _arCameraTransform;
         private Camera _arCamera;
-        private InteractionManager _interactionManager;
 
-        public Camera arCamera;
         private ARCameraManager arCameraManager;
-        public GameObject image;
+        public GameObject testImage;
+        public GameObject textMeshPro;
 
-        public RawImage camRawImage;
 
         private Texture2D camTexture;
         private XRCpuImage cpuImage;
 
-        private bool pictureTaken = false;
+        private WebAPI webAPI;
+
+
 
         // Start is called before the first frame update
         void Start()
         {
+
+
             _arCamera = OriginLocationUtility.GetOriginCamera();
             _arCameraTransform = _arCamera.transform;
-            _interactionManager ??= FindObjectOfType<InteractionManager>(true);
 
-            arCameraManager = arCamera.GetComponent<ARCameraManager>();
+            arCameraManager = _arCamera.GetComponent<ARCameraManager>();
 
-            arCameraManager.frameReceived += OnFrameReceived;
+            webAPI = new WebAPI();
+
+
         }
 
         private void Update()
@@ -60,26 +65,32 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             {
                 AdjustPanelPosition();
             }
+
         }
 
-        private void OnFrameReceived(ARCameraFrameEventArgs args)
+        public void buttonclick()
         {
-            Debug.Log(pictureTaken);
 
-            if (pictureTaken)
-            {
-                return;
-            }
+            StartCoroutine(CaptureImage());
 
-            //cpuImage = new XRCpuImage();
+        }
+
+        private IEnumerator CaptureImage()
+        {
+            yield return new WaitForEndOfFrame();
+
+            cpuImage = new XRCpuImage();
             if (!arCameraManager.TryAcquireLatestCpuImage(out cpuImage))
             {
-                Debug.Log("Failed to acquire latest cpu image.");
-                return;
+                textMeshPro.GetComponent<TextMeshProUGUI>().text = "Failed to acquire latest cpu image.";
+                yield return new WaitForEndOfFrame();
             }
 
             UpdateCameraTexture(cpuImage);
+
+
         }
+
 
         private unsafe void UpdateCameraTexture(XRCpuImage image)
         {
@@ -99,21 +110,153 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             }
             finally
             {
+
                 image.Dispose();
             }
 
             camTexture.Apply();
-            camRawImage.texture = camTexture;
+
+
+            string fileName = "translate.png";
+
+            string path = Path.Combine(Application.persistentDataPath, fileName);
+
+            byte[] bytes = camTexture.EncodeToPNG();
+
+            File.WriteAllBytes(path, bytes);
+
+            string imageToText = webAPI.imageToText(path);
+
+            byte[] pngImageByteArray = null;
+
+            pngImageByteArray = File.ReadAllBytes(path);
+
+
+            textMeshPro.GetComponent<TextMeshProUGUI>().text = imageToText;
+
+            Texture2D tempTexture = new Texture2D(image.width, image.height, format, false);
+            tempTexture.LoadImage(pngImageByteArray);
+            testImage.GetComponent<RawImage>().texture = tempTexture;
+
+
         }
 
-        public void takeScreenshot()
+
+        public IEnumerator takeScreenshot()
         {
-            pictureTaken = true;
+
+            yield return new WaitForEndOfFrame();
+
+
+            int width = Screen.width;
+            int height = Screen.height;
+            RenderTexture rt = new RenderTexture(width, height, 24);
+
+            _arCamera.targetTexture = rt;
+
+            // The Render Texture in RenderTexture.active is the one
+            // that will be read by ReadPixels.
+            //var currentRT = RenderTexture.active;
+
+            // Render the camera's view.
+
+            // Make a new texture and read the active Render Texture into it.
+            Texture2D image = new Texture2D(width, height);
+
+            _arCamera.Render();
+            RenderTexture.active = rt;
+
+            image.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+
+            image.Apply();
+
+            _arCamera.targetTexture = null;
+
+            RenderTexture.active = null;
+
+            //Destroy(rt);
+
+            // Replace the original active Render Texture.
+
+            //RenderTexture.active = currentRT;
+
+            byte[] bytes = image.EncodeToPNG();
+            Debug.Log(Application.persistentDataPath);
+            string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+            string filePath = Path.Combine(Application.dataPath, fileName);
+            File.WriteAllBytes(filePath, bytes);
+
+            //Destroy(image);
+
+
+            //Destroy(rt);
+            //Destroy(image);
+
+
+
+            //if (currentRT == null)
+            //{
+            //}
+            //camRawImage.texture = image;
         }
+
+
+        public void imageTaker()
+        {
+            // Acquire an XRCpuImage
+            if (!arCameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
+                return;
+
+            // Set up our conversion params
+            var conversionParams = new XRCpuImage.ConversionParams
+            {
+                // Convert the entire image
+                inputRect = new RectInt(0, 0, image.width, image.height),
+
+                // Output at full resolution
+                outputDimensions = new Vector2Int(image.width, image.height),
+
+                // Convert to RGBA format
+                outputFormat = TextureFormat.RGBA32,
+
+                // Flip across the vertical axis (mirror image)
+                transformation = XRCpuImage.Transformation.MirrorY
+            };
+
+            // Create a Texture2D to store the converted image
+            var texture = new Texture2D(image.width, image.height, TextureFormat.RGBA32, false);
+
+            // Texture2D allows us write directly to the raw texture data as an optimization
+            var rawTextureData = texture.GetRawTextureData<byte>();
+            try
+            {
+                unsafe
+                {
+                    // Synchronously convert to the desired TextureFormat
+                    image.Convert(
+                        conversionParams,
+                        new IntPtr(rawTextureData.GetUnsafePtr()),
+                        rawTextureData.Length);
+                }
+            }
+            finally
+            {
+                // Dispose the XRCpuImage after we're finished to prevent any memory leaks
+                image.Dispose();
+            }
+
+            // Apply the converted pixel data to our texture
+            texture.Apply();
+
+            //camRawImage.texture = texture;
+
+        }
+
 
 
         //public void takeScreenshot()
         //{
+
         //    bool captured = arCamera.GetComponent<ARCameraManager>().TryAcquireLatestCpuImage(out cpuImage);
 
         //    debug.GetComponent<TextMeshProUGUI>().text = captured.ToString();
