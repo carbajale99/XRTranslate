@@ -3,12 +3,14 @@ using Qualcomm.Snapdragon.Spaces.Samples;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 namespace Qualcomm.Snapdragon.Spaces.Samples
@@ -29,29 +31,32 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         public float HorizontalBias = 0.5f;
         private Transform _arCameraTransform;
         private Camera _arCamera;
-        private InteractionManager _interactionManager;
 
-        public Camera arCamera;
         private ARCameraManager arCameraManager;
-        public GameObject image;
+        public GameObject testImage;
+        public GameObject textMeshPro;
 
-        public RawImage camRawImage;
 
         private Texture2D camTexture;
         private XRCpuImage cpuImage;
 
-        private bool pictureTaken = false;
+        private WebAPI webAPI;
+
+
 
         // Start is called before the first frame update
         void Start()
         {
+
+
             _arCamera = OriginLocationUtility.GetOriginCamera();
             _arCameraTransform = _arCamera.transform;
-            _interactionManager ??= FindObjectOfType<InteractionManager>(true);
 
-            arCameraManager = arCamera.GetComponent<ARCameraManager>();
+            arCameraManager = _arCamera.GetComponent<ARCameraManager>();
 
-            arCameraManager.frameReceived += OnFrameReceived;
+            webAPI = new WebAPI();
+
+
         }
 
         private void Update()
@@ -60,26 +65,32 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             {
                 AdjustPanelPosition();
             }
+
         }
 
-        private void OnFrameReceived(ARCameraFrameEventArgs args)
+        public void buttonclick()
         {
-            Debug.Log(pictureTaken);
 
-            if (pictureTaken)
-            {
-                return;
-            }
+            StartCoroutine(CaptureImage());
 
-            //cpuImage = new XRCpuImage();
+        }
+
+        private IEnumerator CaptureImage()
+        {
+            yield return new WaitForEndOfFrame();
+
+            cpuImage = new XRCpuImage();
             if (!arCameraManager.TryAcquireLatestCpuImage(out cpuImage))
             {
-                Debug.Log("Failed to acquire latest cpu image.");
-                return;
+                textMeshPro.GetComponent<TextMeshProUGUI>().text = "Failed to acquire latest cpu image.";
+                yield return new WaitForEndOfFrame();
             }
 
             UpdateCameraTexture(cpuImage);
+
+
         }
+
 
         private unsafe void UpdateCameraTexture(XRCpuImage image)
         {
@@ -99,61 +110,38 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
             }
             finally
             {
+
                 image.Dispose();
             }
 
             camTexture.Apply();
-            camRawImage.texture = camTexture;
+
+
+            string fileName = "translate.png";
+
+            string path = Path.Combine(Application.persistentDataPath, fileName);
+
+            byte[] bytes = camTexture.EncodeToPNG();
+
+            File.WriteAllBytes(path, bytes);
+
+            string imageToText = webAPI.imageToText(path);
+
+            byte[] pngImageByteArray = null;
+
+            pngImageByteArray = File.ReadAllBytes(path);
+
+
+            textMeshPro.GetComponent<TextMeshProUGUI>().text = imageToText;
+
+            Texture2D tempTexture = new Texture2D(image.width, image.height, format, false);
+            tempTexture.LoadImage(pngImageByteArray);
+            testImage.GetComponent<RawImage>().texture = tempTexture;
+
+
         }
 
-        public void takeScreenshot()
-        {
-            pictureTaken = true;
-        }
 
-
-        //public void takeScreenshot()
-        //{
-        //    bool captured = arCamera.GetComponent<ARCameraManager>().TryAcquireLatestCpuImage(out cpuImage);
-
-        //    debug.GetComponent<TextMeshProUGUI>().text = captured.ToString();
-
-        //    RawImage rawImage = image.GetComponent<RawImage>();
-
-        //    // Get the texture associated with the UI.RawImage that we wish to display on screen.
-        //    var texture = rawImage.texture as Texture2D;
-
-        //    // If the texture hasn't yet been created, or if its dimensions have changed, (re)create the texture.
-        //    // Note: Although texture dimensions do not normally change frame-to-frame, they can change in response to
-        //    //    a change in the camera resolution (for camera images) or changes to the quality of the human depth
-        //    //    and human stencil buffers.
-        //    if (texture == null || texture.width != cpuImage.width || texture.height != cpuImage.height)
-        //    {
-        //        texture = new Texture2D(cpuImage.width, cpuImage.height, cpuImage.format.AsTextureFormat(), false);
-        //        rawImage.texture = texture;
-        //    }
-
-        //    // For display, we need to mirror about the vertical access.
-        //    var conversionParams = new XRCpuImage.ConversionParams(cpuImage, cpuImage.format.AsTextureFormat(), XRCpuImage.Transformation.MirrorY);
-
-        //    //Debug.Log("Texture format: " + cpuImage.format.AsTextureFormat()); -> RFloat
-
-        //    // Get the Texture2D's underlying pixel buffer.
-        //    var rawTextureData = texture.GetRawTextureData<byte>();
-
-        //    // Make sure the destination buffer is large enough to hold the converted data (they should be the same size)
-        //    Debug.Assert(rawTextureData.Length == cpuImage.GetConvertedDataSize(conversionParams.outputDimensions, conversionParams.outputFormat),
-        //        "The Texture2D is not the same size as the converted data.");
-
-        //    // Perform the conversion.
-        //    cpuImage.Convert(conversionParams, rawTextureData);
-
-        //    // "Apply" the new pixel data to the Texture2D.
-        //    texture.Apply();
-
-        //    //image.GetComponent<RawImage>().texture = texture;
-
-        //}
 
         private void AdjustPanelPosition()
         {

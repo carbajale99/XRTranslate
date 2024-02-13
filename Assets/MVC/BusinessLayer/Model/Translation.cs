@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Translation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private string phrase;
+    private string translation;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string getPhrase() { return phrase; }
+    public void setPhrase(string p) { phrase = p; }
+    public string getTranslation() { return translation; }
+    public void setTranslation(string t) { translation = t; }
 }

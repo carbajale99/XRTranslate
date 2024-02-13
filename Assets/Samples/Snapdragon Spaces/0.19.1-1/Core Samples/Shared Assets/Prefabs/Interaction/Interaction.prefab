@@ -1,0 +1,645 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6460956797421163412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6460956797421163415}
+  - component: {fileID: 6460956797421163414}
+  m_Layer: 0
+  m_Name: Editor Camera Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6460956797421163415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956797421163412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6460956798401144777}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6460956797421163414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956797421163412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b7fcf7b5fcd49b088a4f178be16881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GazePointer: {fileID: 7294453617337244770}
+  DeviceController: {fileID: 6460956797150643845}
+  InputActionControls: {fileID: -944628639613478452, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+  MoveSpeed: 2
+  RotationSensitivity: 5
+--- !u!1 &6460956798117630930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6460956798117630924}
+  - component: {fileID: 6460956798117630927}
+  - component: {fileID: 6460956798117630925}
+  - component: {fileID: 6460956798117630921}
+  - component: {fileID: 6460956798117630926}
+  m_Layer: 0
+  m_Name: XR Interaction Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6460956798117630924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956798117630930}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6460956798401144777}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6460956798117630927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956798117630930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+--- !u!114 &6460956798117630925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956798117630930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ActionAssets:
+  - {fileID: -944628639613478452, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+--- !u!114 &6460956798117630921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956798117630930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
+--- !u!114 &6460956798117630926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956798117630930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab68ce6587aab0146b8dabefbd806791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_ClickSpeed: 0.3
+  m_MoveDeadzone: 0.6
+  m_RepeatDelay: 0.5
+  m_RepeatRate: 0.1
+  m_TrackedDeviceDragThresholdMultiplier: 2
+  m_ActiveInputMode: 0
+  m_MaxTrackedDeviceRaycastDistance: 1000
+  m_EnableXRInput: 1
+  m_EnableMouseInput: 1
+  m_EnableTouchInput: 1
+  m_PointAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 0}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 0}
+  m_NavigateAction: {fileID: 0}
+  m_SubmitAction: {fileID: 0}
+  m_CancelAction: {fileID: 0}
+  m_EnableBuiltinActionsAsFallback: 1
+  m_EnableGamepadInput: 1
+  m_EnableJoystickInput: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+--- !u!1 &6460956798401144782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6460956798401144777}
+  - component: {fileID: 6969370630261470818}
+  - component: {fileID: 2162619502655969797}
+  m_Layer: 0
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6460956798401144777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956798401144782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6460956797421163415}
+  - {fileID: 6460956798117630924}
+  - {fileID: 7742952835080666686}
+  - {fileID: 7294453617337244771}
+  - {fileID: 6460956797150643845}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6969370630261470818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956798401144782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d672a8272d8043d419d97fbe396ae397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandTrackingPointer: {fileID: 6650174838869014605}
+  GazePointer: {fileID: 7294453617337244770}
+  DevicePointer: {fileID: 6460956797150643850}
+  SwitchInputAction: {fileID: -2098020438248333733, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+  BackButtonInputAction: {fileID: -4310423326198568818, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+  _automaticControllerSwitch: {fileID: 2162619502655969797}
+--- !u!114 &2162619502655969797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460956798401144782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c1ca69699a71b4ca4498540adc3f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractionManager: {fileID: 6969370630261470818}
+  _leftControllerTracked:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Controller Tracked
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 9173362e-a139-4f36-ad55-94a0a3a824ed
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 550a04d7-5805-40fe-a952-ea3f9819eb33
+        m_Path: <OculusTouchController>{LeftHand}/isTracked
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Left Controller Tracked
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  _rightControllerTracked:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Controller Tracked
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: cd798ee7-725c-4b07-8356-b5f8ecceb26b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 5b562ea6-0a97-44d9-a354-585b88afdd2a
+        m_Path: <OculusTouchController>{RightHand}/isTracked
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Right Controller Tracked
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+--- !u!1001 &369555499069338137
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6460956798401144777}
+    m_Modifications:
+    - target: {fileID: 4816996885207137893, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: _eventSystem
+      value: 
+      objectReference: {fileID: 6460956798117630921}
+    - target: {fileID: 4816996885207137893, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: _xrUIInputModule
+      value: 
+      objectReference: {fileID: 6460956798117630926}
+    - target: {fileID: 4816996885207137893, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: InteractionManager
+      value: 
+      objectReference: {fileID: 6969370630261470818}
+    - target: {fileID: 6443179974229150292, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_Name
+      value: Hand Tracking Pointers
+      objectReference: {fileID: 0}
+    - target: {fileID: 6443179974229150292, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+--- !u!1 &6650174838869014605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6443179974229150292, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+  m_PrefabInstance: {fileID: 369555499069338137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7742952835080666686 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7950140118424603687, guid: edaa29852c59a4547ae56684c96a0051, type: 3}
+  m_PrefabInstance: {fileID: 369555499069338137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6460956797333887209
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6460956798401144777}
+    m_Modifications:
+    - target: {fileID: 2361697149425901339, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: IsTextureDynamic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420776980236754477, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_GazeAssistanceDistanceScalingClampValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651661909776, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651661909807, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_Name
+      value: Reticle Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712523, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_Name
+      value: Gaze Pointer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364822651693712523, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+--- !u!1 &7294453617337244770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4364822651693712523, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+  m_PrefabInstance: {fileID: 6460956797333887209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7294453617337244771 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4364822651693712522, guid: 277f63b412db04d2e858b3fdcdfe0d81, type: 3}
+  m_PrefabInstance: {fileID: 6460956797333887209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8591548011673742239
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6460956798401144777}
+    m_Modifications:
+    - target: {fileID: 143685825475970413, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 6460956798117630927}
+    - target: {fileID: 143685825643367938, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 6460956798117630927}
+    - target: {fileID: 3355923464212557077, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_Name
+      value: Controller Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355923464377090231, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 6460956798117630927}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_SelectActionValue.m_Action.m_Id
+      value: 68f69181-98e8-4818-8d8f-b166ced2ac1c
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_UIPressActionValue.m_Action.m_Id
+      value: eeb09a09-4b6b-46e7-9d72-dedca3145825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_ActivateActionValue.m_Action.m_Id
+      value: 17a51f3c-ac7b-4cff-9472-a032493af128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_SelectActionValue.m_Action.m_Name
+      value: Select Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_TrackingStateAction.m_Action.m_Id
+      value: 8158d9b9-c21e-43ff-9245-8b81d3c63f5c
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_UIPressActionValue.m_Action.m_Name
+      value: UI Press Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_ActivateActionValue.m_Action.m_Name
+      value: Activate Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_TrackingStateAction.m_Action.m_Name
+      value: Tracking State
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
+      value: f4416311-40ca-434f-ac9e-ff8b26d6f3e8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769405789284, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Name
+      value: Directional Anchor Rotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_SelectActionValue.m_Action.m_Id
+      value: c43023f3-9d7f-473b-9534-e60710e707d9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_UIPressActionValue.m_Action.m_Id
+      value: 758500bb-05da-433f-a97b-b417aeb9a3f4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_ActivateActionValue.m_Action.m_Id
+      value: dfff1970-e476-4dec-9528-a265b1203dc6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_SelectActionValue.m_Action.m_Name
+      value: Select Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_TrackingStateAction.m_Action.m_Id
+      value: 8bbd329b-6636-45f6-a4f0-bcb672bd9163
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_UIPressActionValue.m_Action.m_Name
+      value: UI Press Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_ActivateActionValue.m_Action.m_Name
+      value: Activate Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_TrackingStateAction.m_Action.m_Name
+      value: Tracking State
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
+      value: ebea09ce-a3d0-40a6-97d8-112c1328101e
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709206769639247627, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Name
+      value: Directional Anchor Rotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_SelectActionValue.m_Action.m_Id
+      value: 141174c6-29a0-41f8-b346-ed4a4bd63847
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_UIPressActionValue.m_Action.m_Id
+      value: 2eaa4528-215f-4c7d-adaf-b5a2888060ef
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_ActivateActionValue.m_Action.m_Id
+      value: 1c438ab6-227e-41d8-a35b-da907c0f78d4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_SelectActionValue.m_Action.m_Name
+      value: Select Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_TrackingStateAction.m_Action.m_Id
+      value: 946e020b-c537-4b61-988b-52e97a436575
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_UIPressActionValue.m_Action.m_Name
+      value: UI Press Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_ActivateActionValue.m_Action.m_Name
+      value: Activate Action Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_TrackingStateAction.m_Action.m_Name
+      value: Tracking State
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
+      value: a76c2a8a-e6fc-443b-acee-1595ab17dab6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941725724886371025, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Name
+      value: Directional Anchor Rotation
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+--- !u!4 &6460956797150643845 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3355923464212557082, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+  m_PrefabInstance: {fileID: 8591548011673742239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6460956797150643850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3355923464212557077, guid: 5802a13b54047714e9f2b5bcbe99ce78, type: 3}
+  m_PrefabInstance: {fileID: 8591548011673742239}
+  m_PrefabAsset: {fileID: 0}

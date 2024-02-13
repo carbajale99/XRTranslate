@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class WordDetected : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float xMin;
+    private float yMin;
+    private float xMax;
+    private float yMax;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private float height;
+    private float width;
+
+    public float getXmin() { return xMin; }
+    public float getYmin() {  return yMin; }
+
+    public void setXmin(float x) { xMin = x; }
+    public void setYmin(float y) { yMin = y; }
+    public void setXmax(float x) { xMax = x; }
+    public void setYmax(float y) { yMax = y; }
+
+    public void calculateHeight() {  }
+
+    public void calculateWidth() { }
+
+    public float getHeight() { return height; }
+
+    public float getWidth() { return width; }
 }

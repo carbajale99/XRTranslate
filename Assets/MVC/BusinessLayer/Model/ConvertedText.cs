@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class ConvertedText : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private string imgPath;
+    private string convertedText;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string getImgPath() {  return imgPath; }
+    public void setImgPath(string ip) { imgPath = ip; }
+    public string getConvertedText() {  return convertedText; }
+    public void setConvertedText(string ct) { convertedText = ct; }
+
 }
