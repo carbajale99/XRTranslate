@@ -11,13 +11,6 @@ public class WebAPI : MonoBehaviour
     private HttpClient client = new HttpClient();
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //client = new HttpClient();
-        //client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
-    }
-
     public string imageToText(string imgPath)
     {
         client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
@@ -52,10 +45,10 @@ public class WebAPI : MonoBehaviour
     }
 
 
-    public string translate(string phrase)
+    public string translate(string translationURL)
     {
         client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
-        string translationURL = stringToTranslationPar(phrase);
+        //string translationURL = stringToTranslationPar(phrase);
 
         var response = client.GetAsync(translationURL).Result; //response from api
 

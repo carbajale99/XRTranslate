@@ -34,7 +34,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Hand Tracking (Deprecated)
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.handtracking.deprecated
   openxrExtensionStrings: XR_EXT_hand_tracking XR_QCOM_hand_tracking_gesture
   company: Qualcomm
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Hand Tracking
-  version: 0.11.0
+  version: 0.16.0
   featureIdInternal: com.qualcomm.snapdragon.spaces.handtracking
   openxrExtensionStrings: 
   company: Qualcomm
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Image Tracking
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.imagetracking
   openxrExtensionStrings: XR_QCOM_image_tracking
   company: Qualcomm
@@ -363,9 +363,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Base Runtime
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.base
-  openxrExtensionStrings: XR_QCOM_component_versioning
+  openxrExtensionStrings: XR_QCOM_component_versioning XR_FB_display_refresh_rate
+    XR_KHR_android_thread_settings
   company: Qualcomm
   priority: 0
   required: 1
@@ -445,11 +446,11 @@ MonoBehaviour:
   m_Name: HandCommonPosesInteraction Android
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: Hand Interaction Poses
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handinteractionposes
+  openxrExtensionStrings: XR_EXT_hand_interaction
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-3213621991366431152
@@ -486,9 +487,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Spatial Anchors
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.spatialanchors
   openxrExtensionStrings: XR_MSFT_spatial_anchor XR_MSFT_spatial_anchor_persistence
+    XR_QCOM_spatial_anchor_persistence_extent
   company: Qualcomm
   priority: 0
   required: 0
@@ -586,11 +588,11 @@ MonoBehaviour:
   m_Name: MetaQuestTouchProControllerProfile Android
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: Meta Quest Touch Pro Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.metaquestpro
+  openxrExtensionStrings: XR_FB_touch_controller_pro
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-1435732639232848125
@@ -895,18 +897,24 @@ MonoBehaviour:
   - {fileID: -3953060118663052912}
   - {fileID: 1862755975769153617}
   - {fileID: 5791665931546422015}
+  - {fileID: 8780285027227271692}
   - {fileID: -9046331816919806982}
+  - {fileID: -3567108945956883696}
+  - {fileID: 5542060519035322771}
   - {fileID: -6713255833973398303}
   - {fileID: -8966359765406082619}
   - {fileID: 7971131666046253588}
   - {fileID: -4786214336271331853}
   - {fileID: 8869213548099187724}
   - {fileID: 7526924627598776624}
+  - {fileID: -1638631289225730271}
   - {fileID: 5779193595027568539}
   - {fileID: 7598565463963483564}
   - {fileID: -534912885323292434}
   - {fileID: -1302441922837001074}
+  - {fileID: 7567376430342926994}
   - {fileID: 6186412221295960503}
+  - {fileID: 5400798414311480825}
   - {fileID: 159783938134106183}
   - {fileID: 8292891125113673830}
   - {fileID: -3144339634590292680}
@@ -967,9 +975,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Camera Access (Experimental)
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.cameraaccess
-  openxrExtensionStrings: XR_QCOMX_camera_frame_access
+  openxrExtensionStrings: XR_QCOMX_camera_frame_access XR_KHR_convert_timespec_time
   company: Qualcomm
   priority: 0
   required: 0
@@ -1176,7 +1184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Spatial Meshing (Experimental)
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.sceneunderstanding
   openxrExtensionStrings: XR_MSFT_scene_understanding
   company: Qualcomm
@@ -1195,11 +1203,11 @@ MonoBehaviour:
   m_Name: QrCodeTrackingFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: QR Code Tracking (Experimental)
+  version: 0.19.1.1
+  featureIdInternal: com.qualcomm.snapdragon.spaces.qrcodetracking
+  openxrExtensionStrings: XR_QCOMX_marker_tracking
+  company: Qualcomm
   priority: 0
   required: 0
 --- !u!114 &5414350764840760442
@@ -1235,11 +1243,11 @@ MonoBehaviour:
   m_Name: HandInteractionProfile Android
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: Hand Interaction Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handinteraction
+  openxrExtensionStrings: XR_EXT_hand_interaction
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &5779193595027568539
@@ -1296,7 +1304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Plane Detection
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.planedetection
   openxrExtensionStrings: XR_QCOM_plane_detection XR_MSFT_scene_understanding
   company: Qualcomm
@@ -1368,11 +1376,11 @@ MonoBehaviour:
   m_Name: PalmPoseInteraction Android
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: Palm Pose
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.palmpose
+  openxrExtensionStrings: XR_EXT_palm_pose
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &7598565463963483564
@@ -1430,7 +1438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Hit Testing
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.qualcomm.snapdragon.spaces.raycasting
   openxrExtensionStrings: XR_QCOM_ray_casting
   company: Qualcomm
@@ -1470,7 +1478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: Microsoft Mixed Reality Motion Controller Profile
-  version: 0.15.0
+  version: 0.19.1.1
   featureIdInternal: com.unity.openxr.feature.input.microsoftmotioncontroller
   openxrExtensionStrings: 
   company: Qualcomm
@@ -1489,11 +1497,11 @@ MonoBehaviour:
   m_Name: DPadInteraction Android
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: D-Pad Binding
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.dpadinteraction
+  openxrExtensionStrings: XR_KHR_binding_modification XR_EXT_dpad_binding
+  company: Unity
   priority: 0
   required: 0
   forceThresholdLeft: 0.5

@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Translator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private WebAPI webAPI = new WebAPI();
+
+    public string translate(string phrase)
     {
-        
+        string translationURL = stringToTranslationPar(phrase);
+        return webAPI.translate(translationURL);
     }
 
-    // Update is called once per frame
-    void Update()
+    private string stringToTranslationPar(string phrase) //function to set up parameter 
     {
-        
+        string baseURL = "/translator?phrase="; //base URL
+
+        string finalURL = baseURL + phrase; //baseURL + phrase to translate
+
+        return finalURL;
     }
 }
