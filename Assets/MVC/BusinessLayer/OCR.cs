@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class OCR : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private WebAPI webAPI = new WebAPI();
+    private ConvertedText convertedText;
+
+    public string ocr(string imgPath)
     {
-        
+        return webAPI.imageToText(imgPath);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
