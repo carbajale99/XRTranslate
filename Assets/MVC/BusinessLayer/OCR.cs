@@ -5,11 +5,17 @@ using UnityEngine;
 public class OCR : MonoBehaviour
 {
     private WebAPI webAPI = new WebAPI();
-    private ConvertedText convertedText;
+    private ConvertedText convertedText = new ConvertedText();
 
-    public string ocr(string imgPath)
+    public ConvertedText ocr(string imgPath)
     {
-        return webAPI.imageToText(imgPath);
+        convertedText.setImgPath(imgPath);
+
+        string conversion = webAPI.imageToText(imgPath);
+
+        convertedText.setConvertedText(conversion);
+
+        return convertedText;
     }
 
 

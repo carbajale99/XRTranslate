@@ -6,11 +6,18 @@ public class Translator : MonoBehaviour
 {
 
     private WebAPI webAPI = new WebAPI();
+    private Translation translation = new Translation();
 
-    public string translate(string phrase)
+    public Translation translate(string phrase)
     {
-        string translationURL = stringToTranslationPar(phrase);
-        return webAPI.translate(translationURL);
+        translation.setPhrase(phrase);
+        string translationURL = stringToTranslationPar(translation.getPhrase());
+
+        string newPhrase = webAPI.translate(translationURL);
+        translation.setTranslation(newPhrase);
+
+        return translation;
+
     }
 
     private string stringToTranslationPar(string phrase) //function to set up parameter 
