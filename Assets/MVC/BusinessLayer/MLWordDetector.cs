@@ -1,66 +1,79 @@
 using System.Collections;
+using System;
 using System.IO;
 using TensorFlowLite;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections.Generic;
+using System.Drawing; // Remember to add a reference to System.Drawing.dll
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+using Unity.Collections.LowLevel.Unsafe;
+using Qualcomm.Snapdragon.Spaces;
+using UnityEngine.UI;
+using TMPro;
 
-public class MLWordDetector : MonoBehaviour
+
+namespace Qualcomm.Snapdragon.Spaces.Samples
 {
-    private Interpreter interpreter;
-    private string modelUrl = "https://xrtranslate-standard-83t.s3.us-east.cloud-object-storage.appdomain.cloud/detect%20(1).tflite";
-
-    void Start()
+    public class BoundingBox
     {
-        StartCoroutine(DownloadAndLoadModel());
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
+        public float CenterX { get; set; }
+        public float CenterY { get; set; }
     }
 
-    private IEnumerator DownloadAndLoadModel()
+    public class MLWordDetector : MonoBehaviour
     {
-        // Download the model file
-        using (UnityWebRequest uwr = UnityWebRequest.Get(modelUrl))
+        private Camera _arCamera;
+
+        private ARCameraManager arCameraManager;
+
+        private Transform _arCameraTransform;
+
+        private AspectMode aspectMode = AspectMode.Fill;
+
+        public GameObject testText;
+
+        public GameObject testTexture;
+
+        private WebAPI webAPI = new WebAPI();
+
+
+        void Start()
         {
-            yield return uwr.SendWebRequest();
+            _arCamera = OriginLocationUtility.GetOriginCamera();
+            _arCameraTransform = _arCamera.transform;
 
-            if (uwr.isNetworkError || uwr.isHttpError)
+            arCameraManager = _arCamera.GetComponent<ARCameraManager>();
+
+        }
+
+        private int frameSkipCount = 0;
+        private const int skipFrames = 10; // Adjust based on performance
+
+        unsafe void Update()
+        {
+
+            if (frameSkipCount < skipFrames)
             {
-                Debug.LogError("Model download error: " + uwr.error);
+                frameSkipCount++;
+                return;
             }
-            else
+            frameSkipCount = 0;
+
+            // Example: Get camera image from ARCameraManager
+            XRCpuImage image;
+            if (arCameraManager.TryAcquireLatestCpuImage(out image)) //if camera avail
             {
-                // Get the downloaded data
-                byte[] modelData = uwr.downloadHandler.data;
 
-                // Save the model file locally (optional)
-                string localPath = Path.Combine(Application.persistentDataPath, "model.tflite");
-                File.WriteAllBytes(localPath, modelData);
 
-                // Load the model into the TensorFlow Lite interpreter
-                LoadModel(localPath);
             }
+
+
         }
     }
-
-    private void LoadModel(string modelPath)
-    {
-        var options = new InterpreterOptions();
-        interpreter = new Interpreter(File.ReadAllBytes(modelPath), options);
-
-        // Additional model setup...
-    }
-
-    void OnDestroy()
-    {
-        if (interpreter != null)
-        {
-            interpreter.Dispose();
-        }
-    }
-
-
-    void Update()
-    {
-        // Implement the detection logic
-    }
-
-    // Additional methods...
 }

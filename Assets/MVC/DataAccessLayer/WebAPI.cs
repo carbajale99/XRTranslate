@@ -5,13 +5,80 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using UnityEngine;
+using Newtonsoft.Json;
+using System;
 
 public class WebAPI : MonoBehaviour
 {
+
     private HttpClient client = new HttpClient();
 
+    /*client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");*/
 
-    public string imageToText(string imgPath)
+    public class Vertex
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public class TextItem
+    {
+        public string Text { get; set; } = string.Empty;
+
+        public List<Vertex> Vertices { get; set; } = new List<Vertex>();
+    }
+
+    public List<TextItem> ocr(string filePath)
+    {
+        client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
+        var requestUri = "/ocr";
+
+        // Check if the file exists
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine("File not found.");
+            return null;
+        }
+
+        try
+        {
+            using (var multipartContent = new MultipartFormDataContent())
+            {
+                // Load the file into a stream
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    var fileContent = new StreamContent(fileStream);
+
+                    multipartContent.Add(fileContent, "file", Path.GetFileName(filePath));
+
+                    var response = client.PostAsync(requestUri, multipartContent).Result;
+                    response.EnsureSuccessStatusCode();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var jsonString = response.Content.ReadAsStringAsync().Result;
+                        var items = JsonConvert.DeserializeObject<List<TextItem>>(jsonString);
+                        return items;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"HTTP Error: {response.StatusCode}");
+                        return null;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            return null;
+        }
+
+    }
+
+
+
+    /*public var ocr(string imgPath)
     {
         client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
         string ocrURL = "/ocr";
@@ -42,7 +109,7 @@ public class WebAPI : MonoBehaviour
             return "Error: " + response.StatusCode;
         }
 
-    }
+    }*/
 
 
     public string translate(string translationURL)

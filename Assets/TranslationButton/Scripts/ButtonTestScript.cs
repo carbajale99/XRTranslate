@@ -2,7 +2,7 @@
  * File: ButtonTestScript.cs
  * Copyright (c) 2022-2023 Qualcomm Technologies, Inc. and/or its subsidiaries. All rights reserved.
  *
- ******************************************************************************/
+ ******************************************************************************//*
 
 using UnityEngine;
 //using UnityEngine.SceneManagement;
@@ -169,3 +169,4 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         }
     }
 }
+*/
