@@ -1,21 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
+using System.Linq;
 
 public class OCR : MonoBehaviour
 {
     private WebAPI webAPI = new WebAPI();
+
     private ConvertedText convertedText = new ConvertedText();
 
-    public ConvertedText ocr(string imgPath)
+    private string imgPath = "C:\\Users\\tuant\\Downloads\\IMG_0827.JPG";
+
+    public void ocrClick()
+    {
+        var items = ocrConversion();
+        //Debug.Log(items);
+
+    }
+
+    public List<WebAPI.TextItem> ocrConversion()
     {
         convertedText.setImgPath(imgPath);
 
-        string conversion = webAPI.imageToText(imgPath);
+        var items = webAPI.ocr(imgPath);
 
-        convertedText.setConvertedText(conversion);
+        // convertedText.setConvertedText(items);
 
-        return convertedText;
+        Debug.Log(items.First().Vertices.First().Y.ToString());
+
+        return items;
     }
 
 

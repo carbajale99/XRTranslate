@@ -1,4 +1,4 @@
-using Qualcomm.Snapdragon.Spaces;
+/*using Qualcomm.Snapdragon.Spaces;
 using Qualcomm.Snapdragon.Spaces.Samples;
 using System;
 using System.Collections;
@@ -176,3 +176,4 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
     }
 }
+*/

@@ -68,7 +68,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 2144132872282492305, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+    m_Reference: {fileID: 2144132872282492305, guid: 3b8161acd44bb4e9489a58e42924c914,
+      type: 3}
   m_RotationAction:
     m_UseReference: 1
     m_Action:
@@ -80,7 +81,20 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 6289970810668441550, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+    m_Reference: {fileID: 6289970810668441550, guid: 3b8161acd44bb4e9489a58e42924c914,
+      type: 3}
+  m_IsTrackedAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Is Tracked
+      m_Type: 1
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 1
+    m_Reference: {fileID: 0}
   m_TrackingStateAction:
     m_UseReference: 0
     m_Action:
@@ -104,7 +118,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 1063613578457033467, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+    m_Reference: {fileID: 1063613578457033467, guid: 3b8161acd44bb4e9489a58e42924c914,
+      type: 3}
   m_SelectActionValue:
     m_UseReference: 0
     m_Action:
@@ -128,7 +143,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 58574795314512359, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+    m_Reference: {fileID: 58574795314512359, guid: 3b8161acd44bb4e9489a58e42924c914,
+      type: 3}
   m_ActivateActionValue:
     m_UseReference: 0
     m_Action:
@@ -152,7 +168,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 1063613578457033467, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+    m_Reference: {fileID: 1063613578457033467, guid: 3b8161acd44bb4e9489a58e42924c914,
+      type: 3}
   m_UIPressActionValue:
     m_UseReference: 0
     m_Action:
@@ -160,6 +177,18 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: 36f40c9e-6103-43cb-bbbb-dca8f20997a6
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_UIScrollAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: UI Scroll
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -176,7 +205,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 1063613578457033467, guid: 3b8161acd44bb4e9489a58e42924c914, type: 3}
+    m_Reference: {fileID: 1063613578457033467, guid: 3b8161acd44bb4e9489a58e42924c914,
+      type: 3}
   m_RotateAnchorAction:
     m_UseReference: 0
     m_Action:
@@ -332,6 +362,15 @@ MonoBehaviour:
   m_TranslateSpeed: 1
   m_AnchorRotateReferenceFrame: {fileID: 0}
   m_AnchorRotationMode: 0
+  m_UIHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_UIHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_EnableARRaycasting: 0
+  m_OccludeARHitsWith3DObjects: 0
+  m_OccludeARHitsWith2DObjects: 0
 --- !u!120 &3417347985948541784
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -453,6 +492,11 @@ MonoBehaviour:
   m_LineWidth: 0.005
   m_OverrideInteractorLineLength: 1
   m_LineLength: 3
+  m_AutoAdjustLineLength: 0
+  m_MinLineLength: 0.5
+  m_UseDistanceToHitAsMaxLineLength: 1
+  m_LineRetractionDelay: 0.5
+  m_LineLengthChangeSpeed: 12
   m_WidthCurve:
     serializedVersion: 2
     m_Curve:
@@ -477,6 +521,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  m_SetLineColorGradient: 1
   m_ValidColorGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 0, a: 0}
@@ -573,6 +618,10 @@ MonoBehaviour:
   m_StopLineAtFirstRaycastHit: 1
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 0
+  m_LineBendRatio: 0.5
+  m_OverrideInteractorLineOrigin: 1
+  m_LineOriginTransform: {fileID: 0}
+  m_LineOriginOffset: 0
 --- !u!114 &1966320433
 MonoBehaviour:
   m_ObjectHideFlags: 0

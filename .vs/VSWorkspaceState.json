@@ -2,8 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\Assets",
-    "\\Assets\\ExampleAssets",
-    "\\Assets\\ExampleAssets\\Scripts"
+    "\\Assets\\MVC",
+    "\\Assets\\MVC\\BusinessLayer",
+    "\\Assets\\MVC\\BusinessLayer\\TensorflowLite",
+    "\\Assets\\MVC\\DataAccessLayer",
+    "\\Assets\\PictureButton",
+    "\\Assets\\PictureButton\\Scripts",
+    "\\Assets\\TranslationButton",
+    "\\Assets\\TranslationButton\\Scripts"
   ],
   "PreviewInSolutionExplorer": false
 }
