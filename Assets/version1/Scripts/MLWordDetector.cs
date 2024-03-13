@@ -149,19 +149,19 @@ public class MLWordDetector : MonoBehaviour
         //var dockerBox = Instantiate(coverPrefab, canvasWidthHeight, Quaternion.identity);
         //dockerBox.transform.parent = canvas.transform;
 
-        string ocrResult = webAPI.imageToText(path);
-        ocrResult = ocrResult.Replace("\\n", " ");
-        ocrResult = ocrResult.Replace("\\f", "");
+        ////string ocrResult = webAPI.imageToText(path);
+        //ocrResult = ocrResult.Replace("\\n", " ");
+        //ocrResult = ocrResult.Replace("\\f", "");
 
-        string translation = webAPI.translate(ocrResult);
-        Debug.Log(translation);
+        //string translation = webAPI.translate(ocrResult);
+        //Debug.Log(translation);
 
         GameObject translationUI = Instantiate(translationPrefab, new Vector3(0, 0, 0), Quaternion.identity); //Instanting a prefab object
 
         translationUI.transform.SetParent(canvas.transform);
         translationUI.transform.localPosition = new Vector3(1, 0 + 0.5f, 1);
         GameObject translationText = translationUI.transform.Find("TranslationText").gameObject;
-        translationText.GetComponent<TextMeshProUGUI>().text = translation;
+        //translationText.GetComponent<TextMeshProUGUI>().text = translation;
         translationText.GetComponent<TextMeshProUGUI>().fontSize = 30;
 
         //startDeleteCo = translationUI.GetComponent<TranslationBox>().startDeleteTimer();
@@ -178,7 +178,7 @@ public class MLWordDetector : MonoBehaviour
         //float CenterX = ((result[3] - result[1]) * cWidth) / 2 + (result[1] * cWidth);
         //float CenterY = ((result[2] - result[0]) * cHeight) / 2 + (result[0] * cHeight);
 
-        testText.GetComponent<TextMeshProUGUI>().text = translation;
+        //testText.GetComponent<TextMeshProUGUI>().text = translation;
 
         byte[] pngImageByteArray = null;
 
