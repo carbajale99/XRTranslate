@@ -112,10 +112,12 @@ public class WebAPI : MonoBehaviour
     }*/
 
 
-    public string translate(string translationURL)
+    public string translate(string phrase, string language)
     {
         client.BaseAddress = new System.Uri("https://xr-translate-flask-3017423fd510.herokuapp.com");
-        //string translationURL = stringToTranslationPar(phrase);
+        string translationURL = stringToTranslationPar(phrase,language);
+
+        //return translationURL;
 
         var response = client.GetAsync(translationURL).Result; //response from api
 
@@ -125,7 +127,8 @@ public class WebAPI : MonoBehaviour
             var responseContent = response.Content.ReadAsStringAsync().Result;
             responseContent = responseContent.Replace("\"", "");
             Debug.Log(responseContent);
-            return responseContent;
+            string finalResponse = System.Text.RegularExpressions.Regex.Unescape(responseContent);
+            return finalResponse;
 
         }
         else //else error
@@ -135,11 +138,27 @@ public class WebAPI : MonoBehaviour
         }
     }
 
-    private string stringToTranslationPar(string phrase) //function to set up parameter 
+    private string stringToTranslationPar(string phrase, string language) //function to set up parameter 
     {
         string baseURL = "/translator?phrase="; //base URL
 
-        string finalURL = baseURL + phrase; //baseURL + phrase to translate
+        string phraseURL = baseURL + phrase; //baseURL + phrase to translate
+
+        string convertedLanguage ="en";
+        if (language == "English")
+        {
+            convertedLanguage = "en";
+        }
+        else if(language == "Spanish")
+        {
+            convertedLanguage = "es";
+        }
+        else if (language == "Chinese")
+        {
+            convertedLanguage = "zh-cn";
+        }
+
+        string finalURL = phraseURL + "&language=" + convertedLanguage;
 
         return finalURL;
     }

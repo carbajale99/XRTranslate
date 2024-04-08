@@ -11,7 +11,7 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 using Unity.Collections.LowLevel.Unsafe;
-
+using Qualcomm.Snapdragon.Spaces.Samples;
 
 public class OCRUI : MonoBehaviour
 {
@@ -27,15 +27,18 @@ public class OCRUI : MonoBehaviour
 
     private ARCameraManager arCameraManager;
 
-    private float conversionX = 3.9f;
-
-    private float conversionY = 2.1f;
-
     public GameObject testText;
 
-    public GameObject coverPrefab;
+    public GameObject translationButtonPrefab;
     public GameObject canvas;
 
+    private string testImage = "C:\\Users\\edgar\\Downloads\\words.JPG";
+
+    public GameObject wordsUI;
+
+    public GameObject wordsContainerPrefab;
+
+    public GameObject optionsUI;
 
     void Start()
     {
@@ -49,13 +52,62 @@ public class OCRUI : MonoBehaviour
 
     public void ocrClick()
     {
-        //var items = ocrConversion();
-        //Debug.Log(items);
 
         StartCoroutine(takeImage());
 
-        Debug.Log("Height: " + _arCamera.scaledPixelHeight);
-        Debug.Log("Width: " + _arCamera.scaledPixelWidth);
+
+        //var detectedTexts = webAPI.ocr(testImage);
+
+
+        //int translationButtonCount = 3;
+
+        //int startingWord = 0;
+
+        //int wordContainerCount = (int)Math.Ceiling((double)detectedTexts.Count / (double)3);
+
+
+
+        //for (int i = 0; i < wordContainerCount; i++)
+        //{
+        //    float yPosition = 150f;
+
+        //    GameObject wordContainer = Instantiate(wordsContainerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        //    wordContainer.transform.SetParent(wordsUI.transform);
+        //    wordContainer.transform.localScale = Vector3.one;
+        //    wordContainer.transform.localPosition = new Vector3(0, 0, 0);
+
+        //    if (i != 0)
+        //    {
+        //        wordContainer.SetActive(false);
+        //    }
+
+
+        //    if (translationButtonCount > detectedTexts.Count - startingWord)
+        //    {
+        //        translationButtonCount = detectedTexts.Count - startingWord;
+        //    }
+
+        //    for (int j = 0; j < translationButtonCount; j++)
+        //    {
+        //        Debug.Log(detectedTexts[startingWord].Text);
+        //        GameObject translationButton = Instantiate(translationButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+        //        translationButton.transform.SetParent(wordContainer.transform);
+        //        translationButton.transform.localScale = Vector3.one;
+        //        translationButton.transform.localPosition = new Vector3(0, yPosition, 1);
+        //        GameObject translationButtonText = translationButton.transform.Find("ButtonText").gameObject;
+        //        translationButtonText.GetComponent<TextMeshProUGUI>().text = detectedTexts[startingWord].Text;
+
+        //        startingWord++;
+
+        //        yPosition -= 150;
+
+        //    }
+
+        //}
+
+        //optionsUI.SetActive(true);
+
 
 
     }
@@ -115,120 +167,59 @@ public class OCRUI : MonoBehaviour
         File.WriteAllBytes(path, bytes);
 
 
+
         var detectedTexts = webAPI.ocr(path);
 
-        Vector2 centralPoint = CalculateCentroid(detectedTexts[0].Vertices);
-        Vector2 normalizedCoordinates = new Vector2(centralPoint.x / Screen.width, centralPoint.y / Screen.height);
-        // Convert to world space
-        Vector3 worldSpacePoint = _arCamera.ScreenToWorldPoint(new Vector3(normalizedCoordinates.x, normalizedCoordinates.y, 10));
 
+        int translationButtonCount = 3;
 
-        var (finalX, finalY) = convertCoordinates(image, detectedTexts[0]);
+        int startingWord = 0;
 
-
-        testText.GetComponent<TextMeshProUGUI>().text = detectedTexts[0].Text + " " + finalX + " " + finalY;
-
-        RectTransform parentCanvas = canvas.GetComponent<RectTransform>();
+        int wordContainerCount = (int)Math.Ceiling((double)detectedTexts.Count / (double)3);
 
 
 
-
-        var dockerBox = Instantiate(coverPrefab, worldSpacePoint, Quaternion.identity);
-        dockerBox.transform.parent = canvas.transform;
-
-        ////string ocrResult = webAPI.imageToText(path);
-        //ocrResult = ocrResult.Replace("\\n", " ");
-        //ocrResult = ocrResult.Replace("\\f", "");
-
-        //string translation = webAPI.translate(ocrResult);
-        //Debug.Log(translation);
-
-        //GameObject translationUI = Instantiate(translationPrefab, new Vector3(0, 0, 0), Quaternion.identity); //Instanting a prefab object
-
-        //translationUI.transform.SetParent(canvas.transform);
-        //translationUI.transform.localPosition = new Vector3(1, 0 + 0.5f, 1);
-        //GameObject translationText = translationUI.transform.Find("TranslationText").gameObject;
-        //translationText.GetComponent<TextMeshProUGUI>().text = translation;
-        //translationText.GetComponent<TextMeshProUGUI>().fontSize = 30;
-
-        //startDeleteCo = translationUI.GetComponent<TranslationBox>().startDeleteTimer();
-        //StartCoroutine(startDeleteCo);
-
-
-
-        //float x = result[1] * cWidth;
-        //float y = result[2] * cHeight;
-        //float Width = (result[3] - result[1]) * cWidth;
-        //float cropWidth = (result[3] - result[1]) * camTexture.width;
-        //float Height = (result[2] - result[0]) * cHeight;
-        //float cropHeight = (result[2] - result[0]) * camTexture.height;
-        //float CenterX = ((result[3] - result[1]) * cWidth) / 2 + (result[1] * cWidth);
-        //float CenterY = ((result[2] - result[0]) * cHeight) / 2 + (result[0] * cHeight);
-
-
-        //byte[] pngImageByteArray = null;
-
-        //pngImageByteArray = File.ReadAllBytes(path);
-
-
-
-
-        //Texture2D tempTexture = new Texture2D(camTexture.width, camTexture.height, format, false);
-        //tempTexture.LoadImage(pngImageByteArray);
-        //testImage.GetComponent<RawImage>().texture = tempTexture;
-
-        //var dockerBox = Instantiate(coverPrefab);
-
-        //dockerBox.transform.parent = canvas.transform;
-        //dockerBox.transform.localPosition = new Vector3(CenterX, CenterY, 2);
-
-
-
-    }
-
-    Vector2 CalculateCentroid(List<WebAPI.Vertex> vertices)
-    {
-        float centerX = 0f;
-        float centerY = 0f;
-        foreach (var vertex in vertices)
+        for (int i = 0; i < wordContainerCount; i++)
         {
-            centerX += vertex.X;
-            centerY += vertex.Y;
+            float yPosition = 150f;
+
+            GameObject wordContainer = Instantiate(wordsContainerPrefab, new Vector3(0, 0, 0), canvas.transform.rotation);
+            wordContainer.transform.SetParent(wordsUI.transform);
+            wordContainer.transform.localScale = Vector3.one;
+            wordContainer.transform.localPosition = new Vector3(0, 0, 0);
+
+            if (i != 0)
+            {
+                wordContainer.SetActive(false);
+            }
+
+
+            if (translationButtonCount > detectedTexts.Count - startingWord)
+            {
+                translationButtonCount = detectedTexts.Count - startingWord;
+            }
+
+            for (int j = 0; j < translationButtonCount; j++)
+            {
+                //Debug.Log(detectedTexts[startingWord].Text);
+                GameObject translationButton = Instantiate(translationButtonPrefab, new Vector3(0, 0, 0), canvas.transform.rotation);
+
+                translationButton.transform.SetParent(wordContainer.transform);
+                translationButton.transform.localScale = Vector3.one;
+                translationButton.transform.localPosition = new Vector3(0, yPosition, 1);
+                GameObject translationButtonText = translationButton.transform.Find("ButtonText").gameObject;
+                translationButtonText.GetComponent<TextMeshProUGUI>().text = detectedTexts[startingWord].Text;
+
+                startingWord++;
+
+                yPosition -= 150;
+
+            }
+
         }
-        centerX /= vertices.Count;
-        centerY /= vertices.Count;
-        return new Vector2(centerX, centerY);
-    }
 
-    public class Vector2
-    {
-        public float x, y;
-        public Vector2(float x, float y) { this.x = x; this.y = y; }
-    }
-
-    public (float x, float y) convertCoordinates(XRCpuImage image, WebAPI.TextItem textItem)
-    {
-
-        float topLeftX = textItem.Vertices[0].X;
-        float topLeftY = textItem.Vertices[0].Y;
-
-        float botRightX = textItem.Vertices[2].X;
-        float botRightY = textItem.Vertices[2].Y;
-
-        float middleX = (botRightX - topLeftX)/2;
-        float middleY = (topLeftY - botRightY) / 2;
-
-        float startingX = middleX - (image.width / 2);
-        float startingY = middleY - (image.height / 2);
-
-        float xScalar = conversionX / image.width;
-        float yScalar = conversionY / image.height;
-
-        float finalX = startingX * xScalar;
-        float finalY = startingY * yScalar;
-
-        return (finalX, finalY);
-
+        optionsUI.SetActive(true);
+        canvas.GetComponent<FloatingPanelController>().FollowGaze = false;
     }
 
     public List<WebAPI.TextItem> ocrConversion(string imgPath)
