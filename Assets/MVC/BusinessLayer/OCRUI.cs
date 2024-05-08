@@ -53,60 +53,60 @@ public class OCRUI : MonoBehaviour
     public void ocrClick()
     {
 
-        StartCoroutine(takeImage());
+        //StartCoroutine(takeImage());
 
 
-        //var detectedTexts = webAPI.ocr(testImage);
+        var detectedTexts = webAPI.ocr(testImage);
 
 
-        //int translationButtonCount = 3;
+        int translationButtonCount = 3;
 
-        //int startingWord = 0;
+        int startingWord = 0;
 
-        //int wordContainerCount = (int)Math.Ceiling((double)detectedTexts.Count / (double)3);
-
-
-
-        //for (int i = 0; i < wordContainerCount; i++)
-        //{
-        //    float yPosition = 150f;
-
-        //    GameObject wordContainer = Instantiate(wordsContainerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        //    wordContainer.transform.SetParent(wordsUI.transform);
-        //    wordContainer.transform.localScale = Vector3.one;
-        //    wordContainer.transform.localPosition = new Vector3(0, 0, 0);
-
-        //    if (i != 0)
-        //    {
-        //        wordContainer.SetActive(false);
-        //    }
+        int wordContainerCount = (int)Math.Ceiling((double)detectedTexts.Count / (double)3);
 
 
-        //    if (translationButtonCount > detectedTexts.Count - startingWord)
-        //    {
-        //        translationButtonCount = detectedTexts.Count - startingWord;
-        //    }
 
-        //    for (int j = 0; j < translationButtonCount; j++)
-        //    {
-        //        Debug.Log(detectedTexts[startingWord].Text);
-        //        GameObject translationButton = Instantiate(translationButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        for (int i = 0; i < wordContainerCount; i++)
+        {
+            float yPosition = 150f;
 
-        //        translationButton.transform.SetParent(wordContainer.transform);
-        //        translationButton.transform.localScale = Vector3.one;
-        //        translationButton.transform.localPosition = new Vector3(0, yPosition, 1);
-        //        GameObject translationButtonText = translationButton.transform.Find("ButtonText").gameObject;
-        //        translationButtonText.GetComponent<TextMeshProUGUI>().text = detectedTexts[startingWord].Text;
+            GameObject wordContainer = Instantiate(wordsContainerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            wordContainer.transform.SetParent(wordsUI.transform);
+            wordContainer.transform.localScale = Vector3.one;
+            wordContainer.transform.localPosition = new Vector3(0, 0, 0);
 
-        //        startingWord++;
+            if (i != 0)
+            {
+                wordContainer.SetActive(false);
+            }
 
-        //        yPosition -= 150;
 
-        //    }
+            if (translationButtonCount > detectedTexts.Count - startingWord)
+            {
+                translationButtonCount = detectedTexts.Count - startingWord;
+            }
 
-        //}
+            for (int j = 0; j < translationButtonCount; j++)
+            {
+                Debug.Log(detectedTexts[startingWord].Text);
+                GameObject translationButton = Instantiate(translationButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
-        //optionsUI.SetActive(true);
+                translationButton.transform.SetParent(wordContainer.transform);
+                translationButton.transform.localScale = Vector3.one;
+                translationButton.transform.localPosition = new Vector3(0, yPosition, 1);
+                GameObject translationButtonText = translationButton.transform.Find("ButtonText").gameObject;
+                translationButtonText.GetComponent<TextMeshProUGUI>().text = detectedTexts[startingWord].Text;
+
+                startingWord++;
+
+                yPosition -= 150;
+
+            }
+
+        }
+
+        optionsUI.SetActive(true);
 
 
 

@@ -38,7 +38,5 @@ public class LeftArrow : MonoBehaviour
         currentWordContainer.SetActive(false);
        
         wordsUI.transform.GetChild(nextChildIndex).gameObject.SetActive(true);
-        //Debug.Log(currentWordContainer.transform.GetSiblingIndex());
-
     }
 }
