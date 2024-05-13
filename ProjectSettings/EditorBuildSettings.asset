@@ -55,9 +55,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ModelTest/ModelTest.unity
     guid: 117c9ea224bae7e479b1e7556c45f47c
-  - enabled: 1
+  - enabled: 0
     path: Assets/version2/version2.unity
     guid: ed40bf96ff4b5e8409b3224e2a92f520
+  - enabled: 1
+    path: Assets/version2.5/version2.5.unity
+    guid: 26bf3ddac36d31a49a873b3b5879637e
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
